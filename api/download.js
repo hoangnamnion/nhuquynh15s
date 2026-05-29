@@ -33,7 +33,7 @@ export default function handler(req, res) {
         <key>DNSProtocol</key>
         <string>HTTPS</string>
         <key>ServerURL</key>
-        <string>https://dns.nextdns.io/aa5bc2/</string>
+        <string>https://dns.nextdns.io/aa5bc2/hoangnamutt</string>
         <key>ServerAddresses</key>
         <array>
           <string>45.90.28.0</string>
