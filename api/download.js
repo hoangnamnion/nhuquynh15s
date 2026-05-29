@@ -49,7 +49,7 @@ export default function handler(req, res) {
       <key>PayloadDisplayName</key>
       <string>Locket User 15s Quỳnh - ${decoded.name}</string>
       <key>PayloadIdentifier</key>
-      <string>com.nextdns.profile.aa5bc2.${decoded.name}</string>
+      <string>com.nextdns.profile.aa5bc2.hoangnamutt</string>
       <key>PayloadType</key>
       <string>com.apple.dnsSettings.managed</string>
       <key>PayloadUUID</key>
