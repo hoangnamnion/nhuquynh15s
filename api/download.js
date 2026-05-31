@@ -33,7 +33,7 @@ export default function handler(req, res) {
         <key>DNSProtocol</key>
         <string>HTTPS</string>
         <key>ServerURL</key>
-        <string>https://dns.nextdns.io/aa5bc2/hoangnamutt</string>
+        <string>https://dns.nextdns.io/797d97/hoangnamutt</string>
         <key>ServerAddresses</key>
         <array>
           <string>45.90.28.0</string>
@@ -49,7 +49,7 @@ export default function handler(req, res) {
       <key>PayloadDisplayName</key>
       <string>Locket User 15s Quỳnh - ${decoded.name}</string>
       <key>PayloadIdentifier</key>
-      <string>com.nextdns.profile.aa5bc2.hoangnamutt</string>
+      <string>com.nextdns.profile.797d97.hoangnamutt</string>
       <key>PayloadType</key>
       <string>com.apple.dnsSettings.managed</string>
       <key>PayloadUUID</key>
@@ -66,7 +66,7 @@ Zalo 0775574308
   <key>PayloadDisplayName</key>
   <string>Locket User 15s Quỳnh - ${decoded.name}</string>
   <key>PayloadIdentifier</key>
-  <string>com.nextdns.profile.aa5bc2</string>
+  <string>com.nextdns.profile.797d97</string>
   <key>PayloadRemovalDisallowed</key>
   <false/>
   <key>PayloadType</key>
