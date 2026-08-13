@@ -296,11 +296,32 @@ function buildVipMessage(name, link, durationText) {
 
 📌 Hướng dẫn kích hoạt:
 👉 Link nhận Profile:
+
 ${link}
 
-     ⏳ Thời hạn liên kết: ${durationText}
+⏳ Thời hạn liên kết: ${durationText}
 
 ⚠️ Lưu ý: Link tự hủy sau thời hạn trên và hỗ trợ tối đa 2 thiết bị. Chúc bạn có trải nghiệm tuyệt vời! 💖`;
+}
+
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      throw new Error("Fallback");
+    }
+  } catch (err) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+  }
+  alert("✅ Đã copy tin nhắn VIP đầy đủ xuống dòng thành công!");
 }
 
 async function createLink() {
@@ -428,16 +449,6 @@ function clearHistory() {
     localStorage.removeItem("linkHistory");
     renderHistory();
   }
-}
-
-function copyText(text) {
-  const tempInput = document.createElement("input");
-  tempInput.value = text;
-  document.body.appendChild(tempInput);
-  tempInput.select();
-  document.execCommand("copy");
-  document.body.removeChild(tempInput);
-  alert("✅ Đã copy link thành công!");
 }
 
 function copyLink() {
