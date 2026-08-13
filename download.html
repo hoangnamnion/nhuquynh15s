@@ -3,50 +3,517 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hướng Dẫn VIP 10s</title>
+    <title>Hướng Dẫn VIP 10s - Như Quỳnh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --primary-gold: #D4AF37; --secondary-gold: #C5A028; --dark-bg: #121212; --card-bg: rgba(30, 30, 30, 0.8); --text-color: #ffffff; --accent-glow: rgba(212, 175, 55, 0.3); }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--dark-bg); background-image: radial-gradient(circle at top right, #2c2c2c, #000000); color: var(--text-color); min-height: 100vh; display: flex; justify-content: center; padding: 20px 15px; }
-        .container { width: 100%; max-width: 450px; position: relative; }
-        header { text-align: center; margin-bottom: 25px; animation: fadeIn Down 0.8s ease; }
-        h1 { font-size: 24px; font-weight: 800; background: linear-gradient(to right, #fff, var(--primary-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 5px; text-transform: uppercase; }
-        .vip-badge { display: inline-block; background: var(--primary-gold); color: #000; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: bold; margin-bottom: 10px; box-shadow: 0 0 10px var(--accent-glow); }
-        .customer-greeting { font-size: 15px; color: #ccc; margin-top: 5px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 20px; }
-        .video-wrapper { width: 100%; aspect-ratio: 9/16; background: #000; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; position: relative; }
-        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-        .step-card { background: var(--card-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; padding: 20px; margin-bottom: 15px; border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.2s ease; }
+        :root {
+            --primary-pink: #ff4081;
+            --secondary-pink: #ff758c;
+            --light-pink-bg: #fff0f5;
+            --card-bg: rgba(255, 255, 255, 0.88);
+            --text-dark: #2d3142;
+            --text-muted: #6c757d;
+            --accent-glow: rgba(255, 64, 129, 0.25);
+            --warning-pink: #ff2a75;
+            --success-green: #10b981;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        body {
+            background-color: #fff0f3;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px 15px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fixed Hero Background with Pink Tint */
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('img/background-hero.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.85;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-gradient-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(255, 240, 245, 0.45) 0%, rgba(255, 192, 203, 0.35) 50%, rgba(255, 240, 245, 0.65) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-logo-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .header-logo {
+            width: 85px;
+            height: 85px;
+            border-radius: 22px;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(255, 64, 129, 0.3);
+            border: 3px solid #ffffff;
+            transition: transform 0.3s ease;
+        }
+
+        .header-logo-container::after {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, #ff4081, #ff85a1);
+            z-index: -1;
+            opacity: 0.6;
+            animation: pulseGlow 2.5s infinite alternate;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d81b60, #ff4081, #ff758c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .vip-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #ff4081, #ff758c);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            box-shadow: 0 6px 18px rgba(255, 64, 129, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        .badge-icon {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+        }
+
+        .customer-greeting {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            padding: 12px 18px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.08);
+            width: 100%;
+            line-height: 1.5;
+        }
+
+        .video-wrapper-outer {
+            position: relative;
+            width: 100%;
+            border-radius: 28px;
+            padding: 4px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #ff4081, #ff758c, #ffffff, #ff4081);
+            background-size: 300% 300%;
+            animation: rotateGradient 4s linear infinite;
+            box-shadow: 0 15px 35px rgba(255, 64, 129, 0.35);
+        }
+
+        @keyframes rotateGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 9/16;
+            background: #000;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-cover {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(255, 240, 245, 0.95) 0%, rgba(255, 192, 203, 0.92) 100%), url('img/background-hero.webp');
+            background-size: cover;
+            background-position: center;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .video-cover.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cover-logo {
+            width: 90px;
+            height: 90px;
+            border-radius: 24px;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(255, 64, 129, 0.35);
+            border: 3px solid #ffffff;
+            margin-bottom: 20px;
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        .cover-play-btn {
+            background: linear-gradient(135deg, #ff4081, #ff758c);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 14px 20px;
+            border-radius: 16px;
+            border: 2px solid #ffffff;
+            box-shadow: 0 8px 25px rgba(255, 64, 129, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .video-cover:hover .cover-play-btn {
+            transform: scale(1.05);
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(255, 64, 129, 0.15);
+            border-color: rgba(255, 64, 129, 0.5);
+        }
+
         .step-header { display: flex; align-items: center; margin-bottom: 10px; }
-        .step-number { background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold)); color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; margin-right: 12px; box-shadow: 0 0 10px var(--accent-glow); }
-        .step-title { font-weight: 600; font-size: 16px; color: #fff; }
-        .step-content { padding-left: 40px; font-size: 14px; color: #ccc; line-height: 1.5; }
-        .warning-text { color: #ff4757; font-weight: bold; display: block; margin-top: 5px; }
-        .success-text { color: #2ed573; font-weight: bold; }
-        .btn-action { display: block; width: 100%; padding: 14px; margin-top: 12px; border-radius: 12px; text-decoration: none; text-align: center; font-weight: 700; font-size: 15px; text-transform: uppercase; border: none; cursor: pointer;}
-        .btn-gold { background: linear-gradient(90deg, var(--secondary-gold), var(--primary-gold)); color: #000; }
-        .btn-blue { background: linear-gradient(90deg, #2193b0, #6dd5ed); color: #fff; }
-        .btn-disabled { background: #555; color: #aaa; pointer-events: none; cursor: not-allowed; }
-        footer { text-align: center; margin-top: 40px; margin-bottom: 20px; font-size: 12px; color: #555; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        #messenger-warning { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.98); z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; backdrop-filter: blur(15px); }
-        .warning-title { font-size: 20px; font-weight: bold; color: var(--primary-gold); margin-bottom: 20px; text-transform: uppercase; border-bottom: 1px solid var(--primary-gold); padding-bottom: 10px; width: 100%; }
-        .arrow-down { font-size: 40px; color: var(--primary-gold); animation: bounce 1.5s infinite; }
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
-        .expired-notice { border: 2px solid #ff4757; background: rgba(255, 71, 87, 0.1); padding: 15px; border-radius: 12px; color: #ff4757; text-align: center; margin-bottom: 20px; font-weight: bold; display: none; }
-        #countdown { color: var(--primary-gold); font-weight: bold; text-align: center; margin-top: 10px; font-size: 14px;}
+
+        .step-number {
+            background: linear-gradient(135deg, #ff4081, #ff758c);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 15px;
+            margin-right: 12px;
+            box-shadow: 0 4px 12px rgba(255, 64, 129, 0.3);
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: #d81b60;
+        }
+
+        .step-content {
+            padding-left: 44px;
+            font-size: 14px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .warning-text {
+            color: var(--warning-pink);
+            font-weight: 700;
+            display: block;
+            margin-top: 8px;
+            background: rgba(255, 42, 117, 0.08);
+            padding: 8px 12px;
+            border-radius: 10px;
+            border-left: 3px solid var(--warning-pink);
+        }
+
+        .success-text {
+            color: var(--success-green);
+            font-weight: 700;
+            display: block;
+            margin-top: 8px;
+            background: rgba(16, 185, 129, 0.08);
+            padding: 8px 12px;
+            border-radius: 10px;
+            border-left: 3px solid var(--success-green);
+        }
+
+        .btn-action {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gold, .btn-pink {
+            background: linear-gradient(135deg, #ff4081, #ff758c);
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(255, 64, 129, 0.35);
+        }
+
+        .btn-gold:hover, .btn-pink:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(255, 64, 129, 0.45);
+        }
+
+        .btn-blue {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: #ffffff;
+            box-shadow: 0 8px 22px rgba(236, 72, 153, 0.35);
+        }
+
+        .btn-blue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(236, 72, 153, 0.45);
+        }
+
+        .btn-disabled {
+            background: #cbd5e1;
+            color: #94a3b8;
+            pointer-events: none;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #884a5e;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.98); opacity: 0.5; }
+            100% { transform: scale(1.04); opacity: 0.9; }
+        }
+
+        #messenger-warning {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 240, 245, 0.95);
+            z-index: 9999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 25px;
+            backdrop-filter: blur(15px);
+        }
+
+        .warning-box {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 30px 20px;
+            box-shadow: 0 15px 40px rgba(255, 64, 129, 0.2);
+            border: 2px solid rgba(255, 182, 193, 0.6);
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .warning-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--warning-pink);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .arrow-down {
+            font-size: 42px;
+            color: var(--primary-pink);
+            animation: bounce 1.5s infinite;
+            margin-top: 15px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .expired-notice {
+            border: 2px solid #ff4757;
+            background: rgba(255, 71, 87, 0.08);
+            padding: 16px;
+            border-radius: 16px;
+            color: #ff4757;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: none;
+            box-shadow: 0 6px 18px rgba(255, 71, 87, 0.15);
+        }
+
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            user-select: none;
+            animation: floatUpAndFade linear forwards;
+        }
+
+        @keyframes floatUpAndFade {
+            0% {
+                transform: translateY(0) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.85;
+            }
+            85% {
+                opacity: 0.85;
+            }
+            100% {
+                transform: translateY(-105vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .sparkle-trail {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            user-select: none;
+            animation: sparkleFade 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            transform-origin: center center;
+        }
+
+        @keyframes sparkleFade {
+            0% {
+                transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translate(-50%, -100%) scale(1.3) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        #countdown {
+            color: var(--primary-pink);
+            font-weight: 700;
+            text-align: center;
+            margin-top: 12px;
+            font-size: 15px;
+            background: rgba(255, 64, 129, 0.08);
+            padding: 8px 14px;
+            border-radius: 12px;
+            display: inline-block;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
+    <div class="bg-overlay"></div>
+    <div class="bg-gradient-glow"></div>
+
     <div id="messenger-warning">
-        <div class="warning-title">⚠️ Lỗi Trình Duyệt</div>
-        <div style="color: #fff; margin-bottom: 20px; font-size: 15px;">Nhấn 3 CHẤM (...) -> <b>Mở bằng trình duyệt</b> Safari</div>
-        <div class="arrow-down">⬇️</div>
+        <div class="warning-box">
+            <div class="warning-title">⚠️ Lỗi Trình Duyệt</div>
+            <div style="color: var(--text-dark); margin-bottom: 20px; font-size: 15px; line-height: 1.5;">
+                Nhấn dấu <b>3 CHẤM (...)</b> ở góc màn hình -> chọn <b>Mở bằng trình duyệt Safari</b>
+            </div>
+            <div class="arrow-down">⬇️</div>
+        </div>
     </div>
 
     <div class="container">
         <header>
-            <div class="vip-badge">♛ Như Quỳnh 💛</div>
-            <h1>Unlock Locket </h1>
+            <div class="header-logo-container">
+                <img src="img/logo-locket.png" alt="Locket Logo" class="header-logo">
+            </div>
+            <div class="vip-badge">
+                <img src="img/gifbox.webp" alt="Gift" class="badge-icon">
+                ♛ Như Quỳnh 🌸
+            </div>
+            <h1>Unlock Locket VIP</h1>
             <div class="customer-greeting" id="greetingBox">
                 Đang tải dữ liệu...
             </div>
@@ -54,40 +521,58 @@
         
         <div id="statusNotice" class="expired-notice"></div>
         
-        <div class="video-wrapper">
-            <iframe src="https://www.youtube.com/embed/zUEHCkS39BM?rel=0&modestbranding=1&playsinline=1&controls=1&showinfo=0" title="Hướng dẫn" allowfullscreen></iframe>
+        <div class="video-wrapper-outer">
+            <div class="video-wrapper">
+                <div id="videoCover" class="video-cover" onclick="playVideoWithFade()">
+                    <img src="img/logo-locket.png" alt="Locket Logo" class="cover-logo">
+                    <button class="cover-play-btn">▶️ XEM VIDEO HƯỚNG DẪN KÍCH HOẠT</button>
+                </div>
+                <iframe id="guideVideo" src="https://www.youtube.com/embed/zUEHCkS39BM?enablejsapi=1&rel=0&modestbranding=1&playsinline=1&controls=1&showinfo=0" title="Hướng dẫn" allowfullscreen allow="autoplay"></iframe>
+            </div>
         </div>
 
         <div class="steps-container">
             <div class="step-card">
-                <div class="step-header"><div class="step-number">1</div><div class="step-title">Chuẩn bị App Locket</div></div>
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Chuẩn bị App Locket</div>
+                </div>
                 <div class="step-content">
-                    Xóa app Locket cũ và tải lại Locket mới.
+                    Xóa app Locket cũ và tải lại Locket mới từ AppStore.
                     <span class="warning-text">⚠️ LƯU Ý: TẢI XONG KHÔNG ĐƯỢC MỞ APP LOCKET LÊN NGAY.</span>
                 </div>
             </div>
 
             <div class="step-card">
-                <div class="step-header"><div class="step-number">2</div><div class="step-title">Tải Cấu Hình </div></div>
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Tải Cấu Hình Profile</div>
+                </div>
                 <div class="step-content">
                     Nhấn vào nút bên dưới để tải file cấu hình.<br>
-                    <button id="downloadBtn" class="btn-action btn-gold" style="display: none;">⬇️ Tải Profile Locket</button>
+                    <button id="downloadBtn" class="btn-action btn-gold" style="display: none;">⬇️ Tải Profile Locket VIP</button>
                     <div id="countdown"></div>
                 </div>
             </div>
 
             <div class="step-card">
-                <div class="step-header"><div class="step-number">3</div><div class="step-title">Tải Ứng Dụng VPN</div></div>
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Tải Ứng Dụng VPN</div>
+                </div>
                 <div class="step-content">
                     <a href="https://apps.apple.com/us/app/usa-vpn-private-fast/id6475051414" target="_blank" class="btn-action btn-blue">🇺🇸 Tải USA VPN (AppStore)</a>
                 </div>
             </div>
 
             <div class="step-card">
-                <div class="step-header"><div class="step-number">4</div><div class="step-title">Kích Hoạt & Tận Hưởng</div></div>
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Kích Hoạt & Tận Hưởng</div>
+                </div>
                 <div class="step-content">
                     Bật VPN lên, vào Locket quay thử.
-                    <span class="success-text">🎉 Nếu được  là thành công! Xong việc nhớ xóa VPN.</span>
+                    <span class="success-text">🎉 Nếu quay thành công là đã kích hoạt xong! Xong việc nhớ xóa VPN.</span>
                 </div>
             </div>
         </div>
@@ -115,6 +600,90 @@
             return btoa(raw);
         }
 
+        function createFloatingParticles() {
+            const symbols = ['💖', '🌸', '✨', '💕', '⭐'];
+            setInterval(() => {
+                if (document.hidden) return;
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                const startX = Math.random() * window.innerWidth;
+                const duration = 6 + Math.random() * 6;
+                const fontSize = 14 + Math.random() * 14;
+                
+                particle.style.left = startX + 'px';
+                particle.style.bottom = '-30px';
+                particle.style.fontSize = fontSize + 'px';
+                particle.style.animationDuration = duration + 's';
+                
+                document.body.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, duration * 1000);
+            }, 800);
+        }
+
+        function playVideoWithFade() {
+            const cover = document.getElementById("videoCover");
+            const iframe = document.getElementById("guideVideo");
+            
+            if (cover) {
+                cover.classList.add("fade-out");
+                setTimeout(() => {
+                    cover.style.display = "none";
+                }, 1000);
+            }
+
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
+        }
+
+        function initSparkleTrail() {
+            const symbols = ['✨', '💖', '⭐', '💕'];
+            let lastTime = 0;
+            const throttleMs = 35;
+
+            function createSparkle(x, y) {
+                const now = Date.now();
+                if (now - lastTime < throttleMs) return;
+                lastTime = now;
+
+                const el = document.createElement('div');
+                el.className = 'sparkle-trail';
+                el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                const size = 14 + Math.random() * 10;
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                el.style.fontSize = size + 'px';
+
+                document.body.appendChild(el);
+
+                setTimeout(() => {
+                    el.remove();
+                }, 700);
+            }
+
+            window.addEventListener('mousemove', (e) => {
+                createSparkle(e.clientX, e.clientY);
+            });
+
+            window.addEventListener('touchmove', (e) => {
+                if (e.touches && e.touches[0]) {
+                    createSparkle(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches[0]) {
+                    createSparkle(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: true });
+        }
+
         async function init() {
             // Chặn in-app browser
             if (isInAppBrowser()) {
@@ -122,18 +691,21 @@
                 document.body.style.overflow = 'hidden';
             }
 
+            createFloatingParticles();
+            initSparkleTrail();
+
             if (!data) return showError("❌ LINK KHÔNG HỢP LỆ");
 
             try {
                 let decoded = JSON.parse(atob(data));
 
                 // Thay tên động
-                document.getElementById("greetingBox").innerHTML = `Xin chào, <b>${decoded.name}</b> 👋<br>Đây là hướng dẫn dành riêng cho bạn.`;
+                document.getElementById("greetingBox").innerHTML = `Xin chào, <b>${decoded.name}</b> 👋<br>Đây là hướng dẫn kích hoạt dành riêng cho bạn.`;
                 document.getElementById("footerText").innerHTML = `<p>Link này dành riêng cho ${decoded.name}.</p>`;
 
                 // Kiểm tra hết hạn
                 if (Date.now() > decoded.exp) {
-                    return showError("❌ LIÊN KẾT ĐÃ HẾT HẠN<br><span style='font-size: 12px; font-weight: normal; color: #ccc'>Vui lòng liên hệ Admin để lấy link mới.</span>");
+                    return showError("❌ LIÊN KẾT ĐÃ HẾT HẠN<br><span style='font-size: 13px; font-weight: normal; color: #ff2a75;'>Vui lòng liên hệ Admin Như Quỳnh để lấy link mới.</span>");
                 }
 
                 // Kiểm tra thiết bị
@@ -144,7 +716,7 @@
                 } else {
                     if (!decoded.devices.includes(fp)) {
                         if (decoded.devices.length >= 2) {
-                            return showError("❌ LINK ĐÃ ĐẠT GIỚI HẠN THIẾT BỊ<br><span style='font-size: 12px; font-weight: normal; color: #ccc'>Mỗi link chỉ hỗ trợ tối đa 2 thiết bị.</span>");
+                            return showError("❌ LINK ĐÃ ĐẠT GIỚI HẠN THIẾT BỊ<br><span style='font-size: 13px; font-weight: normal; color: #ff2a75;'>Mỗi link chỉ hỗ trợ tối đa 2 thiết bị.</span>");
                         }
                         decoded.devices.push(fp);
                         data = btoa(JSON.stringify(decoded));
@@ -197,7 +769,7 @@
 
                 if (distance <= 0) {
                     clearInterval(timerInterval);
-                    showError("❌ LIÊN KẾT ĐÃ HẾT HẠN<br><span style='font-size: 12px; font-weight: normal; color: #ccc'>Vui lòng liên hệ Admin để lấy link mới.</span>");
+                    showError("❌ LIÊN KẾT ĐÃ HẾT HẠN<br><span style='font-size: 13px; font-weight: normal; color: #ff2a75;'>Vui lòng liên hệ Admin Như Quỳnh để lấy link mới.</span>");
                     return;
                 }
 
@@ -205,7 +777,7 @@
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                 const formatSeconds = seconds < 10 ? "0" + seconds : seconds;
 
-                display.innerHTML = `⏳ Tự huỷ sau: ${minutes}:${formatSeconds}`;
+                display.innerHTML = `⏳ Tự huỷ sau: <b>${minutes}:${formatSeconds}</b>`;
             }, 1000);
         }
 

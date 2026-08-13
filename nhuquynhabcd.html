@@ -3,25 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Admin Panel - VIP 10s</title>
+  <title>Admin Panel - Như Quỳnh VIP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-color: #f4f7f6;
-      --card-bg: #ffffff;
-      --text-main: #2c3e50;
-      --text-muted: #7f8c8d;
-      --primary: #4361ee;
-      --primary-hover: #3a53d0;
-      --success: #2ecc71;
-      --success-hover: #27ae60;
-      --danger: #ff4757;
-      --danger-hover: #ff6b81;
-      --border-radius: 16px;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --bg-color: #fff0f3;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --text-main: #2d3142;
+      --text-muted: #6c757d;
+      --primary: #ff4081;
+      --primary-hover: #e91e63;
+      --secondary-pink: #ff758c;
+      --success: #10b981;
+      --danger: #ff2a75;
+      --border-radius: 20px;
+      --shadow: 0 10px 30px rgba(255, 105, 180, 0.12);
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -29,109 +32,238 @@
       margin: 0;
       background-color: var(--bg-color);
       padding: 20px 15px;
-      box-sizing: border-box;
       color: var(--text-main);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Hero Background with Pink Tint */
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('img/background-hero.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.85;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-gradient-glow {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(255, 240, 245, 0.45) 0%, rgba(255, 192, 203, 0.35) 50%, rgba(255, 240, 245, 0.65) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .admin-header {
+      text-align: center;
+      margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-logo-container {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .header-logo {
+      width: 75px;
+      height: 75px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 10px 25px rgba(255, 64, 129, 0.3);
+      border: 3px solid #ffffff;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #ff4081, #ff758c);
+      color: #ffffff;
+      padding: 5px 14px;
+      border-radius: 18px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 14px rgba(255, 64, 129, 0.25);
+    }
+
+    .badge-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    .admin-title {
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #d81b60, #ff4081);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .container, .history-container {
       background-color: var(--card-bg);
-      padding: 30px 25px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 28px 24px;
       border-radius: var(--border-radius);
       box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 182, 193, 0.4);
       width: 100%;
       max-width: 450px;
       box-sizing: border-box;
       margin-bottom: 25px;
+      position: relative;
+      z-index: 1;
       transition: transform 0.3s ease;
     }
 
     h2 { 
       margin-top: 0; 
-      font-size: 22px; 
-      font-weight: 700;
+      font-size: 20px; 
+      font-weight: 800;
       text-align: center;
       margin-bottom: 20px;
+      color: #d81b60;
     }
 
     input {
       width: 100%; 
-      padding: 14px 16px; 
-      font-size: 16px; 
-      border: 1px solid #e1e5eb;
-      border-radius: 12px; 
+      padding: 15px 18px; 
+      font-size: 15px; 
+      border: 1.5px solid rgba(255, 182, 193, 0.6);
+      border-radius: 14px; 
       box-sizing: border-box; 
       margin-bottom: 20px;
       transition: all 0.3s ease;
-      background-color: #f8f9fa;
-      color: #333;
+      background-color: #ffffff;
+      color: var(--text-main);
+      font-weight: 600;
     }
+
     input:focus {
       outline: none;
       border-color: var(--primary);
       background-color: #fff;
-      box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
+      box-shadow: 0 0 0 4px rgba(255, 64, 129, 0.18);
     }
 
     button {
-      padding: 14px 20px; 
-      font-size: 16px; 
-      font-weight: 600; 
+      padding: 15px 20px; 
+      font-size: 15px; 
+      font-weight: 700; 
       color: #fff;
       border: none; 
-      border-radius: 12px; 
+      border-radius: 14px; 
       cursor: pointer;
-      transition: all 0.2s ease; 
+      transition: all 0.25 ease; 
       width: 100%;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      letter-spacing: 0.3px;
     }
+
     button:active { transform: scale(0.98); }
     button:disabled { opacity: 0.7; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
     
-    .btn-primary { background: linear-gradient(135deg, var(--primary), #3f37c9); }
-    .btn-primary:hover:not(:disabled) { box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4); transform: translateY(-2px); }
+    .btn-primary { 
+      background: linear-gradient(135deg, var(--primary), var(--secondary-pink)); 
+      box-shadow: 0 8px 22px rgba(255, 64, 129, 0.35);
+    }
+    .btn-primary:hover:not(:disabled) { 
+      box-shadow: 0 12px 28px rgba(255, 64, 129, 0.45); 
+      transform: translateY(-2px); 
+    }
 
-    .btn-success { background: linear-gradient(135deg, var(--success), #20bf6b); }
-    .btn-success:hover { box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4); transform: translateY(-2px); }
+    .btn-success { 
+      background: linear-gradient(135deg, #10b981, #059669); 
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+    }
+    .btn-success:hover { 
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4); 
+      transform: translateY(-2px); 
+    }
 
-    .btn-danger { background: linear-gradient(135deg, var(--danger), #ff6b81); }
-    .btn-danger:hover { box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4); transform: translateY(-2px); }
+    .btn-danger { 
+      background: linear-gradient(135deg, var(--danger), #ff4757); 
+      box-shadow: 0 6px 20px rgba(255, 42, 117, 0.3);
+    }
+    .btn-danger:hover { 
+      box-shadow: 0 8px 25px rgba(255, 42, 117, 0.4); 
+      transform: translateY(-2px); 
+    }
 
-    #result { margin-top: 25px; border-top: 1px dashed #dcdde1; padding-top: 25px; }
+    #result { margin-top: 25px; border-top: 1.5px dashed rgba(255, 182, 193, 0.6); padding-top: 25px; }
     
     .countdown { 
-      color: var(--danger); font-weight: 700; font-size: 15px; margin-top: 15px; 
-      background: rgba(255, 71, 87, 0.1); padding: 10px; border-radius: 8px;
+      color: var(--danger); font-weight: 700; font-size: 14px; margin-top: 15px; 
+      background: rgba(255, 42, 117, 0.08); padding: 12px; border-radius: 12px;
+      text-align: center;
     }
 
     .history-header-main {
       display: flex; justify-content: space-between; align-items: center; 
-      margin-bottom: 20px; border-bottom: 2px solid #f1f2f6; padding-bottom: 15px;
+      margin-bottom: 20px; border-bottom: 1.5px solid rgba(255, 182, 193, 0.4); padding-bottom: 15px;
     }
     .history-header-main h2 { margin: 0; text-align: left; }
 
     .history-item {
-      background: #ffffff; padding: 15px; border-radius: 12px; margin-bottom: 15px;
-      border: 1px solid #f1f2f6; border-left: 5px solid var(--primary); 
-      display: flex; flex-direction: column; gap: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02); transition: all 0.3s ease;
+      background: #ffffff; padding: 16px; border-radius: 14px; margin-bottom: 14px;
+      border: 1px solid rgba(255, 182, 193, 0.4); border-left: 5px solid var(--primary); 
+      display: flex; flex-direction: column; gap: 12px;
+      box-shadow: 0 4px 14px rgba(255, 105, 180, 0.06); transition: all 0.3s ease;
     }
-    .history-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-    .history-item.expired { border-left-color: var(--text-muted); opacity: 0.6; }
+    .history-item:hover { box-shadow: 0 8px 20px rgba(255, 64, 129, 0.12); }
+    .history-item.expired { border-left-color: var(--text-muted); opacity: 0.7; }
     
-    .history-info { display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-    .status-badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
-    .status-active { background: rgba(46, 204, 113, 0.1); color: var(--success); }
-    .status-expired { background: rgba(127, 140, 141, 0.1); color: var(--text-muted); }
+    .history-info { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 15px; }
+    .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+    .status-active { background: rgba(16, 185, 129, 0.12); color: var(--success); }
+    .status-expired { background: rgba(108, 117, 125, 0.12); color: var(--text-muted); }
 
     .history-actions { display: flex; gap: 10px; }
-    .btn-small { padding: 10px; font-size: 14px; flex: 1; border-radius: 8px; box-shadow: none;}
+    .btn-small { padding: 11px; font-size: 13px; flex: 1; border-radius: 10px; box-shadow: none;}
   </style>
 </head>
 <body>
 
+<div class="bg-overlay"></div>
+<div class="bg-gradient-glow"></div>
+
+<div class="admin-header">
+  <div class="header-logo-container">
+    <img src="img/logo-locket.png" alt="Locket Logo" class="header-logo">
+  </div>
+  <div class="header-badge">
+    <img src="img/gifbox.webp" alt="Gift" class="badge-icon">
+    Quản Lý Link VIP Như Quỳnh
+  </div>
+  <div class="admin-title">ADMIN PANEL LOCKET</div>
+</div>
+
 <div class="container">
   <h2>⚙️ Tạo Link Mobileconfig</h2>
   <input id="name" placeholder="Nhập tên khách hàng..." autocomplete="off" />
+  
+  <div style="margin-bottom: 20px;">
+    <label style="font-size: 13px; font-weight: 700; color: var(--primary); display: block; margin-bottom: 8px;">⏱️ Thời gian hết hạn link:</label>
+    <select id="durationSelect" style="width: 100%; padding: 14px 16px; font-size: 15px; border: 1.5px solid rgba(255, 182, 193, 0.6); border-radius: 14px; background: #fff; font-weight: 600; color: var(--text-main); outline: none; cursor: pointer;">
+      <option value="15" selected>⏳ 15 phút (Mặc định)</option>
+      <option value="30">⏳ 30 phút</option>
+      <option value="60">⏳ 1 giờ</option>
+      <option value="1440">⏳ 24 giờ (1 ngày)</option>
+    </select>
+  </div>
+
   <button id="createBtn" class="btn-primary" onclick="createLink()">Tạo Liên Kết Mới</button>
   
   <div id="result" style="display: none;"></div>
@@ -140,10 +272,10 @@
 <div class="history-container">
   <div class="history-header-main">
     <h2 style="font-size: 18px;">📋 Lịch sử tạo link</h2>
-    <button onclick="clearHistory()" class="btn-danger" style="width: auto; padding: 8px 15px; font-size: 13px; border-radius: 8px; box-shadow: none;">Xoá Tất Cả</button>
+    <button onclick="clearHistory()" class="btn-danger" style="width: auto; padding: 8px 15px; font-size: 13px; border-radius: 10px; box-shadow: none;">Xoá Tất Cả</button>
   </div>
   <div id="historyList">
-    </div>
+  </div>
 </div>
 
 <script>
@@ -159,7 +291,10 @@ function safeDecodeBase64(str) {
 async function createLink() {
   const nameInput = document.getElementById("name");
   const btn = document.getElementById("createBtn");
+  const durationSelect = document.getElementById("durationSelect");
+  
   const name = nameInput.value.trim();
+  const durationMinutes = parseInt(durationSelect.value, 10) || 15;
   
   if (!name) { alert("Vui lòng nhập tên khách hàng!"); return; }
 
@@ -171,7 +306,7 @@ async function createLink() {
     const res = await fetch("/api/create", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ name })
+      body: JSON.stringify({ name, durationMinutes })
     });
 
     if (!res.ok) throw new Error("API đang lỗi (" + res.status + "), vui lòng chờ giây lát rồi thử lại.");
@@ -189,7 +324,7 @@ async function createLink() {
     const resultDiv = document.getElementById("result");
     resultDiv.style.display = "block";
     resultDiv.innerHTML = `
-      <div style="text-align: left; margin-bottom: 10px;">
+      <div style="text-align: left; margin-bottom: 12px;">
           <span style="font-size: 14px; color: var(--text-muted);">Link tải dành cho:</span> 
           <b style="color: var(--text-main); font-size: 16px;">${name}</b>
       </div>
@@ -295,16 +430,22 @@ function startCountdown(expTime) {
       clearInterval(countdownTimer);
       display.innerHTML = "❌ Link đã hết hạn!";
       display.style.color = "var(--text-muted)";
-      display.style.background = "rgba(127, 140, 141, 0.1)";
+      display.style.background = "rgba(108, 117, 125, 0.12)";
       renderHistory(); 
       return;
     }
 
+    const hours = Math.floor(distance / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     const formatSeconds = seconds < 10 ? "0" + seconds : seconds;
+    const formatMinutes = minutes < 10 ? "0" + minutes : minutes;
 
-    display.innerHTML = `⏳ Tự huỷ sau: ${minutes}:${formatSeconds}`;
+    if (hours > 0) {
+      display.innerHTML = `⏳ Tự huỷ sau: <b>${hours}h ${formatMinutes}m ${formatSeconds}s</b>`;
+    } else {
+      display.innerHTML = `⏳ Tự huỷ sau: <b>${formatMinutes}:${formatSeconds}</b>`;
+    }
   }, 1000);
 }
 </script>
