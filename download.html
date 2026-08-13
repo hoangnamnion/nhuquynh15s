@@ -212,24 +212,27 @@
         }
 
         .cover-play-btn {
-            background: linear-gradient(135deg, #ff4081, #ff758c);
+            background: linear-gradient(135deg, #ff4081, #ff69b4, #ff758c);
             color: #ffffff;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 800;
-            padding: 14px 20px;
-            border-radius: 16px;
-            border: 2px solid #ffffff;
-            box-shadow: 0 8px 25px rgba(255, 64, 129, 0.4);
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 10px 30px rgba(255, 64, 129, 0.45), 0 0 15px rgba(255, 255, 255, 0.6) inset;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: transform 0.3s ease;
+            animation: cuteHeartbeat 2s infinite ease-in-out;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .video-cover:hover .cover-play-btn {
-            transform: scale(1.05);
+        @keyframes cuteHeartbeat {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255, 64, 129, 0.45); }
+            50% { transform: scale(1.06); box-shadow: 0 14px 35px rgba(255, 20, 147, 0.65); }
         }
 
         .step-card {
@@ -511,7 +514,7 @@
             </div>
             <div class="vip-badge">
                 <img src="img/gifbox.webp" alt="Gift" class="badge-icon">
-                ♛ Như Quỳnh 🌸
+                🎀 Như Quỳnh Hello Kitty VIP 🎀
             </div>
             <h1>Unlock Locket VIP</h1>
             <div class="customer-greeting" id="greetingBox">
@@ -524,8 +527,8 @@
         <div class="video-wrapper-outer">
             <div class="video-wrapper">
                 <div id="videoCover" class="video-cover" onclick="playVideoWithFade()">
-                    <img src="img/logo-locket.png" alt="Locket Logo" class="cover-logo">
-                    <button class="cover-play-btn">▶️ XEM VIDEO HƯỚNG DẪN KÍCH HOẠT</button>
+                    <img src="img/giphy.gif" alt="Locket Logo" class="cover-logo">
+                    <button class="cover-play-btn">🎀 Bấm Xem Video VIP ✨</button>
                 </div>
                 <iframe id="guideVideo" src="https://www.youtube.com/embed/zUEHCkS39BM?enablejsapi=1&rel=0&modestbranding=1&playsinline=1&controls=1&showinfo=0" title="Hướng dẫn" allowfullscreen allow="autoplay"></iframe>
             </div>
@@ -601,7 +604,7 @@
         }
 
         function createFloatingParticles() {
-            const symbols = ['💖', '🌸', '✨', '💕', '⭐'];
+            const symbols = ['🎀', '💖', '🌸', '✨', '💕', '⭐'];
             setInterval(() => {
                 if (document.hidden) return;
                 const particle = document.createElement('div');
@@ -642,7 +645,7 @@
         }
 
         function initSparkleTrail() {
-            const symbols = ['✨', '💖', '⭐', '💕'];
+            const symbols = ['🎀', '✨', '💖', '⭐', '💕'];
             let lastTime = 0;
             const throttleMs = 35;
 
