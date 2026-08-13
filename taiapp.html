@@ -689,6 +689,20 @@
             }, { passive: true });
         }
 
+        function safeAtob(str) {
+            if (!str) return "";
+            try {
+                let cleaned = decodeURIComponent(str).trim();
+                cleaned = cleaned.replace(/-/g, "+").replace(/_/g, "/");
+                while (cleaned.length % 4 !== 0) {
+                    cleaned += "=";
+                }
+                return atob(cleaned);
+            } catch (e) {
+                return atob(str);
+            }
+        }
+
         async function init() {
             // Chặn in-app browser
             if (isInAppBrowser()) {
@@ -702,7 +716,7 @@
             if (!data) return showError("❌ LINK KHÔNG HỢP LỆ");
 
             try {
-                let decoded = JSON.parse(atob(data));
+                let decoded = JSON.parse(safeAtob(data));
 
                 // Thay tên động
                 document.getElementById("greetingBox").innerHTML = `Xin chào, <b>${decoded.name}</b> 👋<br>Đây là hướng dẫn kích hoạt 15s dành riêng cho bạn.`;
@@ -729,7 +743,7 @@
                 }
 
                 // Bật nút tải và đếm ngược
-                setupDownloadButton();
+                setupDownloadButton(decoded.name);
                 startCountdown(decoded.exp);
 
             } catch (e) {
@@ -747,10 +761,35 @@
             if(timerInterval) clearInterval(timerInterval);
         }
 
-        function setupDownloadButton() {
+        function sendTelegramNotify(customerName, pageType) {
+            const botToken = "8385451467:AAG7hr7O-4T8CtyAUirJZqoC2a-W-HYZySY";
+            const chatIds = ["6754356446", "6187070091"];
+            const now = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+
+            const text = `📥 ⚡ KHÁCH VỪA BẤM TẢI PROFILE LOCKET ⚡
+───────────────────────
+👤 Khách hàng: ${customerName || 'Khách Vô Danh'}
+⏱️ Thời gian: ${now}
+📱 Trang tải: ${pageType}
+🌐 Trình duyệt: ${navigator.platform || 'iOS Device'}`;
+
+            chatIds.forEach(chatId => {
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: text
+                    })
+                }).catch(err => console.log("Telegram Notify Error:", err));
+            });
+        }
+
+        function setupDownloadButton(customerName) {
             const btn = document.getElementById("downloadBtn");
             btn.style.display = "block";
             btn.onclick = () => {
+                sendTelegramNotify(customerName, "Trang 15s (taiapp.html)");
                 fetch("/api/download?data=" + data, {
                     headers: { "x-fp": getFingerprint() }
                 })

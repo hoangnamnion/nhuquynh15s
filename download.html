@@ -431,6 +431,160 @@
             box-shadow: 0 6px 18px rgba(255, 71, 87, 0.15);
         }
 
+        /* Modal Popup System Announcement */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(45, 49, 66, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 28px 22px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(255, 64, 129, 0.35);
+            border: 2.5px solid rgba(255, 182, 193, 0.8);
+            animation: popupIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            position: relative;
+        }
+
+        @keyframes popupIn {
+            0% { opacity: 0; transform: scale(0.85); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-megaphone {
+            font-size: 45px;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: pulseGlow 1.8s infinite alternate;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #d81b60;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .modal-subhead {
+            font-size: 12px;
+            font-weight: 800;
+            color: #ff4081;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: var(--text-dark);
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .zalo-box {
+            background: rgba(255, 240, 245, 0.9);
+            border: 1.5px solid rgba(255, 182, 193, 0.8);
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            margin-bottom: 16px;
+            text-align: left;
+            transition: transform 0.2s ease;
+        }
+
+        .zalo-box:hover {
+            transform: translateY(-2px);
+        }
+
+        .zalo-logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 4px 12px rgba(0, 104, 255, 0.25);
+            flex-shrink: 0;
+        }
+
+        .zalo-text-title {
+            font-weight: 800;
+            font-size: 14px;
+            color: #0068ff;
+            margin-bottom: 2px;
+        }
+
+        .zalo-text-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .warning-note-box {
+            background: #fff0f3;
+            border-left: 4px solid var(--warning-pink);
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 12px;
+            color: var(--warning-pink);
+            font-weight: 700;
+            line-height: 1.5;
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .modal-alert-red {
+            font-size: 13px;
+            font-weight: 800;
+            color: #ff2a75;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .modal-btn-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-modal-primary {
+            flex: 1;
+            background: linear-gradient(135deg, #ff4081, #ff758c);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 14px;
+            padding: 13px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(255, 64, 129, 0.35);
+        }
+
+        .btn-modal-secondary {
+            flex: 1;
+            background: #f1f5f9;
+            color: #64748b;
+            font-weight: 700;
+            font-size: 13px;
+            padding: 13px;
+            border-radius: 14px;
+            border: 1px solid #cbd5e1;
+            cursor: pointer;
+        }
+
         .particle {
             position: fixed;
             pointer-events: none;
@@ -496,6 +650,38 @@
 <body>
     <div class="bg-overlay"></div>
     <div class="bg-gradient-glow"></div>
+
+    <div id="systemNoticeModal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-megaphone">📢</div>
+            <div class="modal-title">THÔNG BÁO HỆ THỐNG</div>
+            <div class="modal-subhead">ĐỌC KĨ TRÁNH GẶP LỖI</div>
+            
+            <div class="modal-desc">
+                Vui lòng đọc và xem kỹ video <b>HƯỚNG DẪN</b> trước khi thao tác!
+            </div>
+
+            <a href="https://zalo.me/g/aaogtst37snww3jqubfh" target="_blank" class="zalo-box">
+                <img src="img/logozalo.jpg" alt="Zalo Logo" class="zalo-logo-img">
+                <div>
+                    <div class="zalo-text-title">Tham gia Zalo Hỗ Trợ ›</div>
+                    <div class="zalo-text-desc">Giải đáp nhanh và nhận hỗ trợ VIP</div>
+                </div>
+            </a>
+
+            <div class="warning-note-box">
+                Lưu ý: Tham gia nhóm để được bảo hành gói GOLD khi gặp lỗi, không tham gia sẽ không được áp dụng gói bảo hành 💖
+            </div>
+            <div class="modal-alert-red">Vào Nhóm Nhớ Tắt Thông Báo Nhóm.</div>
+
+            <div class="modal-alert-red">⚠️ CÁC BẠN XEM KĨ VIDEO HƯỚNG DẪN!</div>
+
+            <div class="modal-btn-row">
+                <button class="btn-modal-primary" onclick="closeNoticeModal()">Đã hiểu</button>
+                <button class="btn-modal-secondary" onclick="hideNotice24h()">Đóng trong 24h</button>
+            </div>
+        </div>
+    </div>
 
     <div id="messenger-warning">
         <div class="warning-box">
@@ -701,6 +887,29 @@
             }
         }
 
+        function checkAndShowNoticeModal() {
+            const hideUntil = localStorage.getItem('systemNoticeHideUntil');
+            if (!hideUntil || Date.now() > parseInt(hideUntil, 10)) {
+                const modal = document.getElementById('systemNoticeModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                }
+            }
+        }
+
+        function closeNoticeModal() {
+            const modal = document.getElementById('systemNoticeModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function hideNotice24h() {
+            const hideUntil = Date.now() + 24 * 60 * 60 * 1000;
+            localStorage.setItem('systemNoticeHideUntil', hideUntil.toString());
+            closeNoticeModal();
+        }
+
         async function init() {
             // Chặn in-app browser
             if (isInAppBrowser()) {
@@ -710,6 +919,7 @@
 
             createFloatingParticles();
             initSparkleTrail();
+            checkAndShowNoticeModal();
 
             if (!data) return showError("❌ LINK KHÔNG HỢP LỆ");
 
@@ -741,7 +951,7 @@
                 }
 
                 // Bật nút tải và đếm ngược
-                setupDownloadButton();
+                setupDownloadButton(decoded.name);
                 startCountdown(decoded.exp);
 
             } catch (e) {
@@ -759,10 +969,35 @@
             if(timerInterval) clearInterval(timerInterval);
         }
 
-        function setupDownloadButton() {
+        function sendTelegramNotify(customerName, pageType) {
+            const botToken = "8385451467:AAG7hr7O-4T8CtyAUirJZqoC2a-W-HYZySY";
+            const chatIds = ["6754356446", "6187070091"];
+            const now = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+
+            const text = `📥 ⚡ KHÁCH VỪA BẤM TẢI PROFILE LOCKET ⚡
+───────────────────────
+👤 Khách hàng: ${customerName || 'Khách Vô Danh'}
+⏱️ Thời gian: ${now}
+📱 Trang tải: ${pageType}
+🌐 Trình duyệt: ${navigator.platform || 'iOS Device'}`;
+
+            chatIds.forEach(chatId => {
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: text
+                    })
+                }).catch(err => console.log("Telegram Notify Error:", err));
+            });
+        }
+
+        function setupDownloadButton(customerName) {
             const btn = document.getElementById("downloadBtn");
             btn.style.display = "block";
             btn.onclick = () => {
+                sendTelegramNotify(customerName, "Trang 10s (download.html)");
                 fetch("/api/download?data=" + data, {
                     headers: { "x-fp": getFingerprint() }
                 })

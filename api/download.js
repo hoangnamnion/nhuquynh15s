@@ -21,6 +21,34 @@ export default function handler(req, res) {
     return res.status(403).send("Thiết bị không hợp lệ");
   }
 
+  // Gửi thông báo Telegram tức thì về 2 Chat ID
+  try {
+    const botToken = "8385451467:AAG7hr7O-4T8CtyAUirJZqoC2a-W-HYZySY";
+    const chatIds = ["6754356446", "6187070091"];
+    const now = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+    const clientIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress || 'Mạng di động';
+
+    const notifyText = `📥 ⚡ KHÁCH VỪA BẤM TẢI PROFILE LOCKET ⚡
+───────────────────────
+👤 Khách hàng: ${decoded.name}
+⏱️ Thời gian: ${now}
+📱 Gói Profile: Locket Gold 10s - ${decoded.name}
+🌐 IP: ${clientIp}`;
+
+    chatIds.forEach(chatId => {
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: notifyText
+        })
+      }).catch(err => console.log("Telegram Error:", err));
+    });
+  } catch (e) {
+    console.log("Telegram notify exception:", e);
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -47,7 +75,7 @@ export default function handler(req, res) {
       <key>PayloadDescription</key>
       <string>Bản quyền DNS thuộc về LOCKET GOLD</string>
       <key>PayloadDisplayName</key>
-      <string>Locket User 10s Quỳnh - ${decoded.name}</string>
+      <string>Locket Gold 10s NQ - ${decoded.name}</string>
       <key>PayloadIdentifier</key>
       <string>com.nextdns.profile.797d97.hoangnamutt</string>
       <key>PayloadType</key>
@@ -60,11 +88,11 @@ export default function handler(req, res) {
   </array>
   <key>PayloadDescription</key>
   <string>
-💛 Locket Gold 10s
+💛 Locket Gold VIP
 Zalo 0775574308
 </string>
   <key>PayloadDisplayName</key>
-  <string>Locket User 10s Quỳnh - ${decoded.name}</string>
+  <string>Locket Gold 10s NQ - ${decoded.name}</string>
   <key>PayloadIdentifier</key>
   <string>com.nextdns.profile.797d97</string>
   <key>PayloadRemovalDisallowed</key>

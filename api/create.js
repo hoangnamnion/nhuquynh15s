@@ -1,9 +1,10 @@
 export default function handler(req, res) {
-  const { name } = req.body;
+  const { name, durationMinutes } = req.body;
+  const minutes = parseInt(durationMinutes, 10) || 15;
 
   const payload = {
     name,
-    exp: Date.now() + 15 * 60 * 1000,
+    exp: Date.now() + minutes * 60 * 1000,
     ip: null,
     ua: null
   };
