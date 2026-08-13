@@ -47,7 +47,7 @@ export default function handler(req, res) {
       <key>PayloadDescription</key>
       <string>Bản quyền DNS thuộc về LOCKET GOLD</string>
       <key>PayloadDisplayName</key>
-      <string>Locket User 15s Quỳnh - ${decoded.name}</string>
+      <string>Locket User 10s Quỳnh - ${decoded.name}</string>
       <key>PayloadIdentifier</key>
       <string>com.nextdns.profile.797d97.hoangnamutt</string>
       <key>PayloadType</key>
@@ -60,11 +60,11 @@ export default function handler(req, res) {
   </array>
   <key>PayloadDescription</key>
   <string>
-💛 Locket Gold 15s
+💛 Locket Gold 10s
 Zalo 0775574308
 </string>
   <key>PayloadDisplayName</key>
-  <string>Locket User 15s Quỳnh - ${decoded.name}</string>
+  <string>Locket User 10s Quỳnh - ${decoded.name}</string>
   <key>PayloadIdentifier</key>
   <string>com.nextdns.profile.797d97</string>
   <key>PayloadRemovalDisallowed</key>
@@ -80,7 +80,7 @@ Zalo 0775574308
 
   res.setHeader(
     "Content-Disposition",
-    `attachment; filename="${decoded.name}_Locket_15s.mobileconfig"`
+    `attachment; filename="${decoded.name}_Locket_10s.mobileconfig"`
   );
   res.setHeader("Content-Type", "application/x-apple-aspen-config");
 
