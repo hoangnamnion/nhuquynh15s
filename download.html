@@ -687,6 +687,20 @@
             }, { passive: true });
         }
 
+        function safeAtob(str) {
+            if (!str) return "";
+            try {
+                let cleaned = decodeURIComponent(str).trim();
+                cleaned = cleaned.replace(/-/g, "+").replace(/_/g, "/");
+                while (cleaned.length % 4 !== 0) {
+                    cleaned += "=";
+                }
+                return atob(cleaned);
+            } catch (e) {
+                return atob(str);
+            }
+        }
+
         async function init() {
             // Chặn in-app browser
             if (isInAppBrowser()) {
@@ -700,7 +714,7 @@
             if (!data) return showError("❌ LINK KHÔNG HỢP LỆ");
 
             try {
-                let decoded = JSON.parse(atob(data));
+                let decoded = JSON.parse(safeAtob(data));
 
                 // Thay tên động
                 document.getElementById("greetingBox").innerHTML = `Xin chào, <b>${decoded.name}</b> 👋<br>Đây là hướng dẫn kích hoạt dành riêng cho bạn.`;
